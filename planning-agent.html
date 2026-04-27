@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Planning Agent</title>
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; background: #0c0c0c; overflow: hidden; }
+    #sim-frame { width: 100%; height: 100%; border: 0; display: block; }
+    #status {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      color: #888; font-family: system-ui, -apple-system, sans-serif; font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div id="status">Loading Planning Agent…</div>
+  <iframe id="sim-frame"
+          src="about:blank"
+          allow="clipboard-read; clipboard-write"
+          style="display:none"></iframe>
+  <script>
+    Office.onReady(function () {
+      var frame = document.getElementById('sim-frame');
+      var status = document.getElementById('status');
+      frame.addEventListener('load', function () {
+        if (frame.src !== 'about:blank') {
+          status.style.display = 'none';
+          frame.style.display = 'block';
+        }
+      });
+      frame.src = 'https://www.sim.ai/chat/planning-agent';
+    });
+  </script>
+</body>
+</html>
